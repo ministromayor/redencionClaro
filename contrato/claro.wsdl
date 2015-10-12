@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions name="claroPuntosSinFin" 
+	targetNamespace="http://www.ksd.com.mx/claroshop"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:psf="http://www.ksd.com.mx/claoshop"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://www.ksd.com.mx/claroshop" schemaLocation="./claro.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="redemptiondecomprasrequest">
+		<wsdl:part element="psf:redencionClaroShop" name="redencionClaroShop"/>
+	</wsdl:message>
+
+	<wsdl:portType name="redencionClaro">
+		<wsdl:operation name="redencionDePuntosClaro">
+			<wsdl:input message="psf:redemptiondecomprasrequest"/>
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="redencionClaroBinding" type="psf:redencionClaro">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="redimirPuntos">
+			<soap:operation soapAction="http://www.ksd.com.mx/claro/redencionClaroShop" />
+			<wsdl:input>
+				<soap:body use="literal"/>
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="redencionClaroShopService">
+		<wsdl:port binding="psf:redencionClaroBinding" name="redencionClaroPort">
+			<soap:address location="http://localhost" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>
+

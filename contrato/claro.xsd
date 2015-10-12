@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.ksd.com.mx/claroshop" 
+	xmlns:psf="http://www.ksd.com.mx/claroshop"
+	elementFormDefault="qualified">
+
+	<xs:simpleType name="socio">
+		<xs:restriction base="xs:unsignedInt">
+			<xs:minExclusive value="0"/>
+			<xs:maxExclusive value="1000000000"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="puntos">
+		<xs:restriction base="xs:unsignedInt">
+			<xs:minExclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="fechayHoraDeRedencion">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="cantidad">
+		<xs:restriction base="xs:unsignedInt">
+			<xs:minExclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="portal">
+		<xs:restriction base="xs:anyURI"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="nonce">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+
+
+	<xs:complexType name="redencionClaroShop">
+		<xs:sequence>
+			<xs:element name="membernumber" type="psf:socio" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="puntos" type="psf:puntos" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="startdate" type="psf:fechayHoraDeRedencion" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="quantity" type="psf:cantidad" minOccurs="0" maxOccurs="1" nillable="false"/>
+			<xs:element name="portalproduct" type="psf:portal" minOccurs="0" maxOccurs="1" nillable="false"/>
+			<xs:element name="uniquenumber" type="psf:nonce" minOccurs="0" maxOccurs="1" nillable="false"/>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>
